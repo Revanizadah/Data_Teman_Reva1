@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "80680293809",
+    "project_id": "data-teman-reva",
+    "storage_bucket": "data-teman-reva.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80680293809:android:6e30505bfa343d2c3e9990",
+        "android_client_info": {
+          "package_name": "com.example.datatemanreva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "80680293809-fd8jup8ibg1idd7q7028vh9ufp3sk6ss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.datatemanreva",
+            "certificate_hash": "85503015fc09c9b723fb92ff0ef63dc8b1fe7515"
+          }
+        },
+        {
+          "client_id": "80680293809-9a1r4c8lgo2imqenms6qjep4b3ke6h8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7NHJ9wt7BSydwknIjQ2Y0pVp1Vf4ZJUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "80680293809-9a1r4c8lgo2imqenms6qjep4b3ke6h8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
