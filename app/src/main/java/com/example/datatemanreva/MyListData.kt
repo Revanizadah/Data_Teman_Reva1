@@ -1,6 +1,5 @@
 package com.example.datatemanreva
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,7 +15,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class MyListData : AppCompatActivity() {
+class MyListData : AppCompatActivity(), RecyclerViewAdaptor.dataListener {
     private var recyclerView: RecyclerView? = null
     private var adapter: RecyclerView.Adapter<*>? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
@@ -46,15 +45,16 @@ class MyListData : AppCompatActivity() {
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
+                        dataTemanReva.clear()
                         for (snapshot in dataSnapshot.children) {
                             val teman = snapshot.getValue(data_teman_reva::class.java)
                             teman?.key = snapshot.key
                             dataTemanReva.add(teman!!)
                         }
 
-                        adapter = RecylerViewAdaptor(dataTemanReva, this@MyListData)
+                        adapter = RecyclerViewAdaptor(dataTemanReva, this@MyListData)
                         recyclerView?.adapter = adapter
-                        (adapter as RecylerViewAdaptor).notifyDataSetChanged()
+                        (adapter as RecyclerViewAdaptor).notifyDataSetChanged()
                         Toast.makeText(applicationContext, "Data Berhasil Dimuat", Toast.LENGTH_LONG).show()
                     }
                 }
@@ -74,4 +74,21 @@ class MyListData : AppCompatActivity() {
         itemDecoration.setDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.line)!!)
         recyclerView?.addItemDecoration(itemDecoration)
     }
+
+    override fun onDeleteData(data: data_teman_reva?, position: Int) {
+        val getUserId: String = auth?.getCurrentUser()?.getUid().toString()
+        val getReference = database.getReference()
+        if (getReference != null) {
+            getReference.child("Admin")
+                .child(getUserId)
+                .child("Data Teman Reva")
+                .child(data?.key.toString())
+                .removeValue()
+                .addOnSuccessListener {
+                    Toast.makeText(this@MyListData,"Data Berhasil Dihapus",
+                    Toast.LENGTH_SHORT).show();
+                }
+        }
+    }
+
 }
